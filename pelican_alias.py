@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 import os.path
 import logging
-from urlparse import urlparse
 from platform import python_version
 
 if float(python_version()[0:3]) < 3:
