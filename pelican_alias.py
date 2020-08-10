@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 import os.path
 import logging
 from platform import python_version
+from itertools import chain
 
 if float(python_version()[0:3]) < 3:
     from urlparse import urlparse
@@ -57,6 +58,8 @@ class AliasGenerator(object):
         pages = (
             self.context['pages'] + self.context['articles'] +
             self.context.get('hidden_pages', []))
+
+        pages = pages + list(chain(*[page.translations for page in pages]))
 
         for page in pages:
             aliases = page.metadata.get('alias', [])
